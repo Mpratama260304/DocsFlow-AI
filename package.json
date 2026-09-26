@@ -1,0 +1,36 @@
+{
+  "name": "docsflow-ai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Marketing website for DocsFlow AI — AI-powered document processing and data extraction.",
+  "homepage": "https://docsflowai.net",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mpratama260304/DocsFlow-AI.git"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "dependencies": {
+    "geist": "^1.7.2",
+    "next": "^16.3.6",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.6.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3"
+  }
+}
