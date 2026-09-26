@@ -201,7 +201,7 @@ export function DashboardPreview() {
                   <tr>
                     <th className="px-4 py-2 font-medium">File</th>
                     <th className="hidden px-4 py-2 font-medium sm:table-cell">Type</th>
-                    <th className="px-4 py-2 font-medium">Status</th>
+                    <th className="hidden px-4 py-2 font-medium sm:table-cell">Status</th>
                     <th className="hidden px-4 py-2 font-medium lg:table-cell">Created</th>
                   </tr>
                 </thead>
@@ -221,12 +221,17 @@ export function DashboardPreview() {
                           aria-pressed={row.id === selected.id}
                           className="flex w-full min-w-0 items-center gap-2 text-left font-medium text-ink"
                         >
-                          <Icon name={row.type === "Receipt" ? "receipt" : "fileText"} size={15} className="shrink-0 text-slate-400" />
-                          <span className="truncate font-mono text-[12px]">{row.file}</span>
+                          <Icon name={row.type === "Receipt" ? "receipt" : "fileText"} size={15} className="text-slate-400" />
+                          {/* Zero-width space after "_" gives narrow screens a natural break point. */}
+                          <span className="min-w-0 font-mono text-[12px] [overflow-wrap:anywhere] sm:truncate">{row.file.replaceAll("_", "_\u200b")}</span>
                         </button>
+                        {/* The status column is hidden on phones so file names get the full row width. */}
+                        <div className="mt-1.5 pl-[23px] sm:hidden">
+                          <StatusPill status={row.status} />
+                        </div>
                       </td>
                       <td className="hidden px-4 py-3 whitespace-nowrap text-slate-600 sm:table-cell">{row.type}</td>
-                      <td className="px-4 py-3 whitespace-nowrap">
+                      <td className="hidden px-4 py-3 whitespace-nowrap sm:table-cell">
                         <StatusPill status={row.status} />
                       </td>
                       <td className="hidden px-4 py-3 whitespace-nowrap text-muted lg:table-cell">{row.created}</td>
@@ -284,7 +289,7 @@ function DetailPanel({ row, onApprove }: { row: Row; onApprove: (id: string) => 
   return (
     <div className="flex flex-col rounded-xl border border-line" aria-live="polite">
       <div className="border-b border-line px-4 py-3">
-        <p className="truncate font-mono text-[12px] font-medium text-ink">{row.file}</p>
+        <p className="font-mono text-[12px] font-medium text-ink [overflow-wrap:anywhere]">{row.file}</p>
         <div className="mt-1.5 flex items-center gap-2 text-[11px] text-muted">
           {row.type} <span className="text-slate-300">·</span> <StatusPill status={row.status} />
         </div>
@@ -314,7 +319,7 @@ function DetailPanel({ row, onApprove }: { row: Row; onApprove: (id: string) => 
                     {key}
                     {flagged ? <span className="font-sans text-[10px] font-medium text-amber-700">Needs review</span> : null}
                   </dt>
-                  <dd className="truncate font-mono text-[12px] text-ink">{value}</dd>
+                  <dd className="font-mono text-[12px] text-ink [overflow-wrap:anywhere]">{value}</dd>
                 </div>
               );
             })}

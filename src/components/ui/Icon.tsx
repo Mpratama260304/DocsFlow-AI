@@ -1,4 +1,5 @@
 import type { SVGProps } from "react";
+import { cn } from "@/lib/cn";
 
 const icons = {
   arrowRight: (
@@ -377,7 +378,7 @@ interface IconProps extends Omit<SVGProps<SVGSVGElement>, "name"> {
   strokeWidth?: number;
 }
 
-export function Icon({ name, size = 20, strokeWidth = 1.6, ...props }: IconProps) {
+export function Icon({ name, size = 20, strokeWidth = 1.6, className, ...props }: IconProps) {
   return (
     <svg
       width={size}
@@ -390,6 +391,7 @@ export function Icon({ name, size = 20, strokeWidth = 1.6, ...props }: IconProps
       strokeLinejoin="round"
       aria-hidden="true"
       focusable="false"
+      className={cn("shrink-0", className)}
       {...props}
     >
       {icons[name]}

@@ -99,17 +99,18 @@ export function CodeBlock({ code, lang, filename, theme = "dark", headerRight, c
       {filename || headerRight ? (
         <div
           className={cn(
-            "flex h-10 items-center justify-between gap-3 border-b px-4",
+            "flex min-h-10 flex-wrap items-center justify-between gap-x-3 gap-y-1 border-b px-4 py-2",
             dark ? "border-white/10 bg-white/[0.02]" : "border-line bg-subtle",
           )}
         >
-          <span className={cn("truncate font-mono text-xs", dark ? "text-slate-400" : "text-muted")}>{filename}</span>
+          <span className={cn("min-w-0 font-mono text-xs [overflow-wrap:anywhere]", dark ? "text-slate-400" : "text-muted")}>{filename}</span>
           {headerRight}
         </div>
       ) : null}
+      {/* Wrap on phones so long lines stay readable instead of hiding behind a horizontal scroll. */}
       <pre
         className={cn(
-          "scrollbar-thin overflow-x-auto p-4 font-mono text-[12.5px] leading-6 sm:p-5 sm:text-[13px]",
+          "scrollbar-thin overflow-x-auto p-4 font-mono text-[12px] leading-6 whitespace-pre-wrap [overflow-wrap:anywhere] sm:p-5 sm:text-[13px] sm:whitespace-pre sm:[overflow-wrap:normal]",
           preClassName,
         )}
         tabIndex={0}

@@ -19,8 +19,8 @@ export function WindowFrame({ breadcrumb, right, className, bodyClassName, child
       <div className="flex h-11 items-center justify-between gap-3 border-b border-line bg-subtle/80 px-4">
         <div className="flex min-w-0 items-center gap-1.5 text-[12.5px]">
           {breadcrumb.map((crumb, i) => (
-            <span key={crumb} className="flex min-w-0 items-center gap-1.5">
-              {i > 0 ? <span className="text-slate-300">/</span> : null}
+            <span key={crumb} className={cn("min-w-0 items-center gap-1.5", i < breadcrumb.length - 1 ? "hidden sm:flex" : "flex")}>
+              {i > 0 ? <span className="hidden text-slate-300 sm:inline">/</span> : null}
               <span className={cn("truncate", i === breadcrumb.length - 1 ? "font-medium text-ink" : "text-muted")}>
                 {crumb}
               </span>

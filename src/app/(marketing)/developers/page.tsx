@@ -106,15 +106,17 @@ export default function DevelopersPage() {
           <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {developerFeatures.map((f, i) => (
               <Reveal as="li" key={f.title} delay={(i % 3) * 60}>
-                <article className="h-full rounded-2xl border border-line bg-white p-6 shadow-card">
-                  <div className="flex items-start justify-between gap-3">
-                    <span className="flex size-10 items-center justify-center rounded-lg bg-brand-50 text-brand-600 ring-1 ring-brand-600/10">
-                      <Icon name={f.icon} size={20} />
-                    </span>
+                <article className="h-full rounded-2xl border border-line bg-white p-5 shadow-card sm:p-6">
+                  <div className="flex items-center justify-between gap-3 sm:items-start">
+                    <div className="flex min-w-0 items-center gap-3 sm:block">
+                      <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 ring-1 ring-brand-600/10">
+                        <Icon name={f.icon} size={20} />
+                      </span>
+                      <h3 className="text-[15px] font-semibold tracking-tight text-ink sm:mt-5">{f.title}</h3>
+                    </div>
                     <StatusBadge status={features[f.feature].status} />
                   </div>
-                  <h3 className="mt-5 text-[15px] font-semibold tracking-tight text-ink">{f.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">{f.description}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted sm:mt-2">{f.description}</p>
                 </article>
               </Reveal>
             ))}

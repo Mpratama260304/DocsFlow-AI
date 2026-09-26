@@ -80,15 +80,17 @@ export function DeveloperSection({ showLink = true }: { showLink?: boolean }) {
 
         <ul className="mt-16 grid gap-px overflow-hidden rounded-2xl bg-white/10 ring-1 ring-white/10 sm:grid-cols-2 lg:grid-cols-3">
           {developerFeatures.map((item, i) => (
-            <Reveal as="li" key={item.title} delay={(i % 3) * 60} className="bg-ink p-6 transition-colors hover:bg-ink-800">
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex size-10 items-center justify-center rounded-lg bg-white/5 text-accent-400 ring-1 ring-white/10">
-                  <Icon name={item.icon} size={20} />
+            <Reveal as="li" key={item.title} delay={(i % 3) * 60} className="bg-ink p-5 transition-colors hover:bg-ink-800 sm:p-6">
+              <div className="flex items-center justify-between gap-3 sm:items-start">
+                <div className="flex min-w-0 items-center gap-3 sm:block">
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-white/5 text-accent-400 ring-1 ring-white/10">
+                    <Icon name={item.icon} size={20} />
+                  </div>
+                  <h3 className="text-[15px] font-semibold tracking-tight sm:mt-5">{item.title}</h3>
                 </div>
                 <StatusBadge status={features[item.feature].status} hideAvailable dark />
               </div>
-              <h3 className="mt-5 text-[15px] font-semibold tracking-tight">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-400">{item.description}</p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-400 sm:mt-2">{item.description}</p>
             </Reveal>
           ))}
         </ul>

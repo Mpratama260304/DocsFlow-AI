@@ -68,12 +68,14 @@ export function DocumentTypes() {
         <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {documentTypes.map((doc, i) => (
             <Reveal as="li" key={doc.title} delay={(i % 4) * 60}>
-              <article className="group relative h-full rounded-2xl border border-line bg-white p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-elevated">
-                <div className="flex size-10 items-center justify-center rounded-lg bg-brand-50 text-brand-600 ring-1 ring-brand-600/10 transition-colors group-hover:bg-brand-600 group-hover:text-white">
-                  <Icon name={doc.icon} size={20} />
+              <article className="group relative h-full rounded-2xl border border-line bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-elevated sm:p-6">
+                <div className="flex items-center gap-3 sm:block">
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 ring-1 ring-brand-600/10 transition-colors group-hover:bg-brand-600 group-hover:text-white">
+                    <Icon name={doc.icon} size={20} />
+                  </div>
+                  <h3 className="text-[15px] font-semibold tracking-tight text-ink sm:mt-5">{doc.title}</h3>
                 </div>
-                <h3 className="mt-5 text-[15px] font-semibold tracking-tight text-ink">{doc.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{doc.description}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted sm:mt-2">{doc.description}</p>
                 <div className="mt-4 flex flex-wrap gap-1.5" aria-label="Example fields">
                   {doc.fields.map((field) => (
                     <span key={field} className="rounded border border-line bg-subtle px-1.5 py-0.5 font-mono text-[10.5px] text-slate-500">

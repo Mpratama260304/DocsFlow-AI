@@ -168,10 +168,12 @@ export default function SolutionsPage() {
                 <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">{s.description}</p>
                 <ul className="mt-8 space-y-3">
                   {s.outcomes.map((o) => (
-                    <li key={o.text} className="flex flex-wrap items-start gap-x-3 gap-y-1 text-sm text-slate-700">
-                      <Icon name="check" size={16} strokeWidth={2} className="mt-0.5 shrink-0 text-brand-600" />
-                      <span>{o.text}</span>
-                      {o.status && o.status !== "available" ? <StatusBadge status={o.status} /> : null}
+                    <li key={o.text} className="flex items-start gap-3 text-sm text-slate-700">
+                      <Icon name="check" size={16} strokeWidth={2} className="mt-0.5 text-brand-600" />
+                      <span className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
+                        <span>{o.text}</span>
+                        {o.status && o.status !== "available" ? <StatusBadge status={o.status} /> : null}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -208,16 +210,16 @@ function SolutionFlow({ solution }: { solution: Solution }) {
       <p className="text-xs font-medium text-muted">Extracted fields</p>
       <div className="mt-3 overflow-hidden rounded-xl bg-ink">
         {solution.fields.map(([k, v], i) => (
-          <div key={k} className={cn("flex items-center justify-between gap-4 px-4 py-2.5 font-mono text-[12px]", i > 0 && "border-t border-white/5")}>
-            <span className="text-[#93C5FD]">{k}</span>
-            <span className="truncate text-[#A5F3FC]">{v}</span>
+          <div key={k} className={cn("flex items-start justify-between gap-4 px-4 py-2.5 font-mono text-[12px]", i > 0 && "border-t border-white/5")}>
+            <span className="shrink-0 text-[#93C5FD]">{k}</span>
+            <span className="min-w-0 text-right text-[#A5F3FC] [overflow-wrap:anywhere]">{v}</span>
           </div>
         ))}
       </div>
 
       <Connector />
 
-      <div className="flex items-center justify-between gap-3 rounded-xl border border-dashed border-line-strong px-4 py-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-dashed border-line-strong px-4 py-3">
         <span className="flex items-center gap-2 text-sm font-medium text-ink">
           <Icon name="arrowUpRight" size={16} className="text-brand-600" />
           {solution.destination.label}

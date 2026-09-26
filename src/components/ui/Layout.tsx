@@ -18,7 +18,7 @@ export function Section({ id, className, tone = "white", children, ...rest }: Se
       id={id}
       aria-labelledby={rest["aria-labelledby"]}
       className={cn(
-        "relative py-20 sm:py-24 lg:py-28",
+        "relative py-16 sm:py-24 lg:py-28",
         tone === "subtle" && "border-y border-line/70 bg-subtle",
         className,
       )}

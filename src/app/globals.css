@@ -103,6 +103,11 @@
   body {
     @apply bg-white font-sans text-fg antialiased;
     font-feature-settings: "cv11", "ss01";
+    overflow-wrap: break-word;
+  }
+  /* Grid items default to min-width:auto, letting wide content (code, nowrap text) blow out single-column mobile grids. */
+  .grid > * {
+    min-width: 0;
   }
   ::selection {
     background: var(--color-brand-100);

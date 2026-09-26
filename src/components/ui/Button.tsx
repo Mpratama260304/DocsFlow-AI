@@ -15,14 +15,14 @@ const variants: Record<Variant, string> = {
 };
 
 const sizes: Record<Size, string> = {
-  sm: "h-9 px-3.5 text-sm",
-  md: "h-10 px-4 text-sm",
-  lg: "h-12 px-5 text-[15px]",
+  sm: "min-h-9 px-3.5 py-1.5 text-sm",
+  md: "min-h-10 px-4 py-2 text-sm",
+  lg: "min-h-12 px-5 py-2.5 text-[15px]",
 };
 
 export function buttonClasses(variant: Variant = "primary", size: Size = "md", className?: string) {
   return cn(
-    "inline-flex select-none items-center justify-center gap-2 whitespace-nowrap rounded-lg font-medium transition-colors duration-150 disabled:pointer-events-none disabled:opacity-60",
+    "inline-flex select-none items-center justify-center gap-2 rounded-lg text-center font-medium transition-colors duration-150 disabled:pointer-events-none disabled:opacity-60 sm:whitespace-nowrap",
     variants[variant],
     sizes[size],
     className,

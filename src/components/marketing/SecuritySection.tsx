@@ -34,9 +34,11 @@ export function SecuritySection() {
                 delay={(i % 2) * 60}
                 className={i === securityPractices.length - 1 && securityPractices.length % 2 === 1 ? "sm:col-span-2" : undefined}
               >
-                <div className="h-full rounded-2xl border border-line bg-white p-6">
-                  <Icon name={item.icon} size={20} className="text-brand-600" />
-                  <h3 className="mt-4 text-[15px] font-semibold tracking-tight text-ink">{item.title}</h3>
+                <div className="h-full rounded-2xl border border-line bg-white p-5 sm:p-6">
+                  <div className="flex items-center gap-2.5 sm:block">
+                    <Icon name={item.icon} size={20} className="text-brand-600" />
+                    <h3 className="text-[15px] font-semibold tracking-tight text-ink sm:mt-4">{item.title}</h3>
+                  </div>
                   <p className="mt-2 text-sm leading-relaxed text-muted">{item.description}</p>
                 </div>
               </Reveal>

@@ -102,7 +102,7 @@ export function DocumentDemo() {
         label="Animated example: DocsFlow AI converts invoice_0428.pdf into structured JSON"
         breadcrumb={["Extraction", "invoice_0428.pdf"]}
         right={<StatusChip completed={completed} label={STAGES[stage]} />}
-        bodyClassName="grid lg:grid-cols-[minmax(0,1fr)_200px_minmax(0,1fr)]"
+        bodyClassName="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_200px_minmax(0,1fr)]"
       >
         {/* Document */}
         <div className="relative border-b border-line bg-subtle/60 p-4 sm:p-6 lg:border-r lg:border-b-0 lg:p-8">
@@ -167,10 +167,9 @@ export function DocumentDemo() {
                 const shown = i < fields;
                 const validated = stage >= 3;
                 return (
-                  <span key={`${field.key}-${cycle}`} className="flex items-center justify-between gap-3">
+                  <span key={`${field.key}-${cycle}`} className="flex items-start justify-between gap-3">
                     {shown ? (
-                      <span className="animate-slide-in whitespace-pre">
-                        {"  "}
+                      <span className="min-w-0 animate-slide-in pl-[2ch] whitespace-pre-wrap [overflow-wrap:anywhere] sm:whitespace-pre">
                         <span className="text-[#93C5FD]">&quot;{field.key}&quot;</span>
                         <span className="text-slate-500">: </span>
                         <span className={field.kind === "number" ? "text-[#FCD34D]" : "text-[#A5F3FC]"}>{field.value}</span>
@@ -183,7 +182,7 @@ export function DocumentDemo() {
                     )}
                     <span
                       className={cn(
-                        "shrink-0 text-emerald-400 transition-all duration-300",
+                        "flex h-[1.9em] shrink-0 items-center text-emerald-400 transition-all duration-300",
                         validated && shown ? "scale-100 opacity-100" : "scale-75 opacity-0",
                       )}
                       style={{ transitionDelay: validated && stage === 3 ? `${i * 120}ms` : "0ms" }}
@@ -232,8 +231,8 @@ function StatusChip({ completed, label }: { completed: boolean; label: string })
 
 function PanelLabel({ icon, text, meta, dark }: { icon: "fileText" | "braces"; text: string; meta: string; dark?: boolean }) {
   return (
-    <div className="flex items-center justify-between gap-3">
-      <span className={cn("inline-flex items-center gap-2 font-mono text-xs", dark ? "text-slate-300" : "text-slate-600")}>
+    <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+      <span className={cn("inline-flex min-w-0 items-center gap-2 font-mono text-xs [overflow-wrap:anywhere]", dark ? "text-slate-300" : "text-slate-600")}>
         <Icon name={icon} size={15} className={dark ? "text-accent-400" : "text-brand-600"} />
         {text}
       </span>
@@ -302,11 +301,11 @@ function UploadOverlay() {
   }, []);
   return (
     <div className="absolute inset-x-3 bottom-3 rounded-lg bg-white/95 p-3 shadow-elevated ring-1 ring-line backdrop-blur sm:inset-x-6 sm:bottom-6">
-      <div className="flex items-center justify-between text-[11px]">
-        <span className="inline-flex items-center gap-1.5 font-medium text-ink">
-          <Icon name="upload" size={13} className="text-brand-600" /> Uploading invoice_0428.pdf
+      <div className="flex items-center justify-between gap-3 text-[11px]">
+        <span className="inline-flex min-w-0 items-center gap-1.5 font-medium text-ink">
+          <Icon name="upload" size={13} className="text-brand-600" /> Uploading<span className="hidden sm:inline"> invoice_0428.pdf</span>
         </span>
-        <span className="text-muted">312 KB</span>
+        <span className="shrink-0 text-muted">312 KB</span>
       </div>
       <div className="mt-2 h-1 overflow-hidden rounded-full bg-slate-100">
         <div className="h-full rounded-full bg-brand-600 transition-[width] duration-[1300ms] ease-out" style={{ width: `${progress}%` }} />
@@ -340,18 +339,18 @@ function Invoice({ fieldState, dimmed }: { fieldState: (key: FieldKey) => "idle"
         dimmed ? "opacity-60" : "opacity-100",
       )}
     >
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex items-center gap-2">
-          <span className="flex size-7 items-center justify-center rounded-md bg-slate-900 text-white" aria-hidden="true">
+      <div className="flex items-start justify-between gap-3 sm:gap-4">
+        <div className="flex min-w-0 items-center gap-2">
+          <span className="flex size-7 shrink-0 items-center justify-center rounded-md bg-slate-900 text-white" aria-hidden="true">
             <svg viewBox="0 0 16 16" className="size-3.5" fill="currentColor">
               <path d="M8 0.5 9.6 6.4 15.5 8 9.6 9.6 8 15.5 6.4 9.6 0.5 8 6.4 6.4Z" />
             </svg>
           </span>
-          <div>
+          <div className="min-w-0">
             <Field state={fieldState("vendor")}>
               <span className="block text-[11px] font-semibold text-ink sm:text-[12.5px]">Northstar Technologies Ltd.</span>
             </Field>
-            <span className="block text-slate-400">billing@northstar.example</span>
+            <span className="block text-slate-400 [overflow-wrap:anywhere]">billing@northstar.example</span>
           </div>
         </div>
         <div className="flex shrink-0 flex-col items-end gap-2.5">
